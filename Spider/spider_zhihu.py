@@ -64,6 +64,20 @@ def url_json(myUrl):
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.20 (KHTML, like Gecko) Chrome/19.0.1036.7 Safari/535.20",
         "Opera/9.80 (Macintosh; Intel Mac OS X 10.6.8; U; fr) Presto/2.9.168 Version/11.52",
     ]
+'''
+choice()函数知识点：https://www.runoob.com/python/func-number-choice.html
+描述：choice() 方法返回一个列表，元组或字符串的  随机项
+用法：
+import random
+random.choice(seq)
+注意：choice()是不能直接访问的，需要导入 random 模块，然后通过 random 静态对象调用该方法。
+
+参数：
+seq-可以是一个列表，元组或字符串
+
+返回值：
+返回随机项
+'''
     ua = random.choice(user_agents)
     request = urllib.request.Request(url=myUrl, headers={"user-agent": ua})
     response = urllib.request.urlopen(request)
@@ -131,10 +145,49 @@ def soup_img_url(myContent):
         logging.error('未找到任何图片，点击 https://www.zhihu.com/question/{}/answer/{} 检查路径'.format(question_id, answer_id))
         os._exit(-1)
 
+'''
+re.compile知识点：https://www.runoob.com/python/python-reg-expressions.html
+re.compile(pattern[, flags])
+compile函数：用于编译正则表达式，生成一个正则表达式(Pattern)对象,供match()和search()这两个函数使用
+pattern: 一个字符串的正则表达式
 
+re.sub用于替换字符串中的匹配项
+知识点：https://blog.csdn.net/linxinfa/article/details/93617615
+语法：
+re.sub(pattern, repl, string, count=0, flags=0)
+参数：
+pattern : 正则中的模式字符串。
+repl : 替换的字符串，也可为一个函数。
+string : 要被查找替换的原始字符串。
+count : 模式匹配后替换的最大次数，默认 0 表示替换所有的匹配。
+
+正则表达式串的解释说明：[^\u4e00-\u9fa5^a-z^A-Z^0-9]
+^\u4e00-\u9fa5：只匹配中文字符；
+^a-z^A-Z：只匹配英文字符（包含大小写）
+^0-9：只匹配数字
+
+中括号作用：
+"^\u4e00-\u9fa5"：匹配"4e00";"-";"9fa5"之外的字符
+"[^\u4e00-\u9fa5]"：匹配中文字符
+测试代码：
+import re
+
+def re_only_chinese(s):
+    pattern1 = re.compile("^\u4e00-\u9fa5")
+    ret1 = pattern1.sub("", s)
+    print(ret1)
+
+    pattern2 = re.compile("[^\u4e00-\u9fa5]")
+    ret2 = pattern2.sub("", s)
+    print(ret2)
+s = "一-龥我爱中国china,爱成都chengdu"
+re_only_chinese(s)
+'''
 # 从字符串中只匹配中文
 def re_only_chinese(s):
+    #得到只匹配到中文、英文（大小写）的正则表达式pattern
     pattern = re.compile("[^\u4e00-\u9fa5^a-z^A-Z^0-9]")
+    #得到只匹配到中文的字符串
     ret = pattern.sub("", s)
     # 虽然文件名长度限制长达200多，但是为了易读性，我们还是设置一下截取的长度，毕竟已经有问题和答案ID
     return ret[:20]
