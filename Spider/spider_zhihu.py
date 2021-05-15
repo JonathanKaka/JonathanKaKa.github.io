@@ -35,6 +35,8 @@ python程序根据url从互联网上批量下载图片时，设置HTTP或Socket�
 import socket
 socket.setdefaulttimeout(t)
 t：代表经过t秒后，如果还未下载成功，自动跳入下一次操作，此次下载失败
+
+socket知识点：https://www.runoob.com/python/python-socket.html
 '''
 socket.setdefaulttimeout(60)
 
