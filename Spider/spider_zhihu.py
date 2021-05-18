@@ -93,6 +93,11 @@ seq-可以是一个列表，元组或字符串
 通过问题的 URL 获取 json 内容. limit 是每次获取的增量，offset是浏览的起始值，
 因为后面是按照逐个回答建立文件夹，所以此处的 limit 建议设置为1，
 sortWay是排序方式，默认是按照热度排序，如果想按照时间排序，传参的时候需要指定sortWay是 created
+
+这里，添加对于知乎网页源码的limit和offset的描述
+limit: 限制每次下拉刷新请求的文章数量，这里无论你怎么修改知乎限定了20
+offset: 表示从哪一篇文章开始。如果是20表示从第21篇文章开始往后请求，请求更久的文章。
+特别注意的是： offset是默认是从0开始的计算的
 '''
 def url_question(questionId, limit=1, offset=0, sortWay='default'):
     question_url = 'https://www.zhihu.com/api/v4/questions/' + str(questionId) + \
