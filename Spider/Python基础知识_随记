@@ -1,0 +1,20 @@
+#point01 如何查询自己已安装库
+
+# way01： 查询自己已安装库的大致信息
+'''
+windows系统：
+            win + r
+            cmd
+            python list
+'''
+
+#way02： 如何详细地查看自己安装库的详细信息
+'''
+windows系统：
+            vscode:
+                    import sys
+                    sys.path
+            根据上述地址，查看已安装第三方库的位置详细信息：
+            path\pythonx.x\site-packages\...
+'''
+
