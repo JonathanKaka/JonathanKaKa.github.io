@@ -5,7 +5,7 @@
 windows系统：
             win + r
             cmd
-            python list
+            pip list
 '''
 
 #way02： 如何详细地查看自己安装库的详细信息
